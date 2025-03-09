@@ -4,3 +4,232 @@
 *:after {
   box-sizing: border-box;
 }
+
+/* 🔹 HEADER */
+#top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 15px 20px;
+  border-bottom: 2px solid #003366;
+}
+
+.siteName a {
+  font-size: 24px;
+  font-weight: bold;
+  color: #003366;
+  text-decoration: none;
+}
+
+#tools a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#tools a:hover {
+  text-decoration: underline;
+}
+/* 🔹 NAVEGACIÓN */
+nav {
+  background-color: #222;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 0 15px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px;
+  transition: background 0.3s ease;
+}
+
+nav ul li a:hover {
+  background-color: #444;
+  border-radius: 5px;
+}
+
+/* 🔹 SECCIÓN DE BIENVENIDA */
+#welcome {
+  text-align: center;
+  margin: 30px 0;
+}
+
+#welcome h2 {
+  font-size: 28px;
+  color: #003366;
+  font-weight: bold;
+}
+
+/* 🔹 CONTENEDOR PRINCIPAL (Para evitar que el checkerboard afecte el contenido) */
+.content-box {
+  max-width: 1100px;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 🔹 HERO SECTION (DeLorean con texto superpuesto) */
+.car-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.car-image {
+  width: 100%;
+  max-width: 700px;
+}
+
+/* 🔹 Cuadro azul con información sobre el DeLorean */
+.car-info {
+  position: absolute;
+  left: 10%;
+  top: 30%;
+  background-color: rgba(0, 123, 255, 0.9); /* Azul semitransparente */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  max-width: 250px;
+  text-align: left;
+}
+
+.car-info h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.car-info p {
+  margin: 5px 0;
+}
+
+.btn {
+  display: inline-block;
+  background-color: white;
+  color: #007bff;
+  padding: 10px 15px;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  color: white;
+}
+
+/* 🔹 Delorean Upgrades - Corrección a Grid 2x2 */
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  gap: 15px;
+  background-color: #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 50%; /* Ajustar al ancho correcto */
+}
+
+/* 🔹 Cada upgrade-item debe ocupar un espacio dentro del grid */
+.upgrade-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* 🔹 Ajuste de tamaño de imágenes */
+.upgrade-item img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 5px;
+}
+
+/* 🔹 Estilos para los enlaces de los upgrades */
+.upgrade-item a {
+  display: block;
+  color: #003366;
+  font-weight: bold;
+  text-decoration: none;
+  margin-top: 5px;
+}
+
+.upgrade-item a:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 Contenedor general de la sección */
+.features {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+/* 🔹 Contenedor exclusivo de Upgrades */
+.upgrades-container {
+  flex: 1;
+  text-align: center; /* Centra el título */
+  background-color: #007bff; /* Mueve el color de fondo aquí */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* 🔹 Estilos de la cuadrícula de Upgrades */
+.upgrades {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  background-color: #007bff;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.reviews {
+  flex: 1;
+  padding-left: 20px;
+}
+
+  /* 🔹 BACKGROUND IMAGE (CHECKERBOARD) */
+body {
+  background-color: lightgray; /* Esto hará que el fondo cambie si el CSS se aplica */
+  font-family: Arial, sans-serif;
+  background-image: url('/images/site/checkerboard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+h1 {
+  color: darkblue;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-color: #fff;
+  }
+}
