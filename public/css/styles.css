@@ -5,6 +5,39 @@
   box-sizing: border-box;
 }
 
+/* Establecer el fondo de la página con el patrón de tablero de ajedrez */
+body {
+  background-image: url('/images/site/checkerboard.jpg');
+  background-size: cover;
+  background-position: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Estilos para el contenedor principal */
+.main-container {
+  background-color: white; /* Fondo blanco para destacar sobre el checkerboard */
+  max-width: 1200px; /* Ancho máximo de la caja */
+  width: 90%; /* Ancho responsivo */
+  margin: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sutil sombra para destacar */
+}
+
+/* Estilos generales para el contenido */
+header, main, footer {
+  margin-bottom: 20px;
+}
+
+header {
+  text-align: center;
+}
+
 /* 🔹 HEADER */
 #top-header {
   display: flex;
@@ -16,25 +49,27 @@
 }
 
 .siteName a {
-  font-size: 24px;
+  font-size: 30px;
   font-weight: bold;
   color: #003366;
   text-decoration: none;
 }
 
 #tools a {
-  color: #007bff;
+  color: #003366;
   text-decoration: none;
+  font-size: 30px;
   font-weight: bold;
 }
 
 #tools a:hover {
   text-decoration: underline;
 }
-/* 🔹 NAVEGACIÓN */
+
 nav {
-  background-color: #222;
+  margin-top: 10px;
   padding: 10px 0;
+  background-color: #222;
 }
 
 nav ul {
@@ -102,8 +137,8 @@ nav ul li a:hover {
 .car-info {
   position: absolute;
   left: 10%;
-  top: 30%;
-  background-color: rgba(0, 123, 255, 0.9); /* Azul semitransparente */
+  top: 20%;
+  background-color: rgba(126, 188, 255, 0.9); /* Azul semitransparente */
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -112,9 +147,10 @@ nav ul li a:hover {
 }
 
 .car-info h2 {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
+  margin-top: 0%;
 }
 
 .car-info p {
@@ -132,45 +168,92 @@ nav ul li a:hover {
   margin-top: 10px;
 }
 
+.btn-container {
+  text-align: center; /* Centra el botón horizontalmente */
+}
+
 .btn:hover {
   background-color: #0056b3;
   color: white;
 }
 
-/* 🔹 Delorean Upgrades - Corrección a Grid 2x2 */
+/* 🔹 Contenedor principal con Flexbox para distribuir upgrades y reviews */
+.features {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px; /* Se redujo el espacio */
+  padding: 10px; /* Ajustado para menor separación */
+  flex-wrap: wrap;
+}
+
+/* 🔹 Títulos arriba y centrados */
+.upgrades-title, .reviews-title {
+  width: 100%;
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Contenedor individual para cada sección */
+.upgrades-container, .reviews-container {
+  flex: 1;
+  text-align: center;
+  max-width: 45%; /* Limitar el ancho */
+}
+
+/* 🔹 Títulos alineados sobre su contenido */
+.upgrades-container h2, .reviews-container h2 {
+  margin-bottom: 10px; /* Se redujo */
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.dmc-text {
+  font-size: 25px;
+  text-align: justify;
+  padding-top: 20px;
+  line-height: 1.8; /* Aumenta el espacio entre líneas */
+}
+
+.dmc-text li {
+  margin-bottom: 20px; /* Espacio extra entre cada bullet point */
+}
+
+/* 🔹 Contenedor de imágenes en Grid 2x2 */
 .upgrades {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+  grid-template-columns: repeat(2, 1fr);
   gap: 15px;
   background-color: #007bff;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  width: 50%; /* Ajustar al ancho correcto */
+  flex: 1;
 }
 
-/* 🔹 Cada upgrade-item debe ocupar un espacio dentro del grid */
+/* 🔹 Estilos individuales de cada imagen */
 .upgrade-item {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: white;
-  padding: 10px;
-  border-radius: 5px;
 }
 
-/* 🔹 Ajuste de tamaño de imágenes */
+/* 🔹 Ajustes en las imágenes */
 .upgrade-item img {
   width: 100px;
   height: auto;
   margin-bottom: 5px;
 }
 
-/* 🔹 Estilos para los enlaces de los upgrades */
+/* 🔹 Nombre de los upgrades debajo de las imágenes */
 .upgrade-item a {
   display: block;
-  color: #003366;
+  color: black;
   font-weight: bold;
   text-decoration: none;
   margin-top: 5px;
@@ -180,37 +263,10 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* 🔹 Contenedor general de la sección */
-.features {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 20px;
-  gap: 20px;
-}
-
-/* 🔹 Contenedor exclusivo de Upgrades */
-.upgrades-container {
-  flex: 1;
-  text-align: center; /* Centra el título */
-  background-color: #007bff; /* Mueve el color de fondo aquí */
-  padding: 20px;
-  border-radius: 10px;
-}
-
-/* 🔹 Estilos de la cuadrícula de Upgrades */
-.upgrades {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  background-color: #007bff;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
-
+/* 🔹 Estilo de la lista de reviews */
 .reviews {
   flex: 1;
+  list-style-type: disc; /* Muestra bullets */
   padding-left: 20px;
 }
 
@@ -229,7 +285,72 @@ h1 {
 }
 
 @media (max-width: 768px) {
+  /* 🔹 REMOVER el fondo checkerboard en móviles */
   body {
-    background-color: #fff;
+    background-image: none; /* Se elimina el fondo */
+    background-color: white; /* Fondo blanco para claridad */
+  }
+
+  /* 🔹 Ajustar la caja principal */
+  .main-container {
+    width: 95%;
+    padding: 10px;
+  }
+
+  /* 🔹 Header y navegación centrada */
+  #top-header {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  /* 🔹 Ajustar Hero Section */
+  .car-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .car-info {
+    position: static;
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .car-image {
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* 🔹 Sección de Upgrades y Reviews */
+  .features {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* 🔹 Upgrades ahora en UNA sola columna */
+  .upgrades {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+
+  /* 🔹 Ajustar Reviews */
+  .reviews-container {
+    width: 100%;
+  }
+
+  .dmc-text {
+    font-size: 18px;
+    padding: 10px;
+    text-align: left;
   }
 }
+
