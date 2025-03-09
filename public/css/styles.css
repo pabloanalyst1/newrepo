@@ -1,11 +1,10 @@
-/******* Change Box Model ***************/
+/******* My Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
 }
 
-/* Establecer el fondo de la página con el patrón de tablero de ajedrez */
 body {
   background-image: url('/images/site/checkerboard.jpg');
   background-size: cover;
@@ -18,18 +17,16 @@ body {
   min-height: 100vh;
 }
 
-/* Estilos para el contenedor principal */
 .main-container {
-  background-color: white; /* Fondo blanco para destacar sobre el checkerboard */
-  max-width: 1200px; /* Ancho máximo de la caja */
+  background-color: white;
+  max-width: 1200px
   width: 90%; /* Ancho responsivo */
   margin: 20px;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sutil sombra para destacar */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos generales para el contenido */
 header, main, footer {
   margin-bottom: 20px;
 }
@@ -38,7 +35,7 @@ header {
   text-align: center;
 }
 
-/* 🔹 HEADER */
+/*HEADER*/
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -96,7 +93,6 @@ nav ul li a:hover {
   border-radius: 5px;
 }
 
-/* 🔹 SECCIÓN DE BIENVENIDA */
 #welcome {
   text-align: center;
   margin: 30px 0;
@@ -108,7 +104,7 @@ nav ul li a:hover {
   font-weight: bold;
 }
 
-/* 🔹 CONTENEDOR PRINCIPAL (Para evitar que el checkerboard afecte el contenido) */
+/*(eviter que el checkerboard afecte el contenido) */
 .content-box {
   max-width: 1100px;
   margin: 20px auto;
@@ -118,7 +114,7 @@ nav ul li a:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔹 HERO SECTION (DeLorean con texto superpuesto) */
+/*my HERO*/
 .car-container {
   position: relative;
   display: flex;
@@ -133,12 +129,11 @@ nav ul li a:hover {
   max-width: 700px;
 }
 
-/* 🔹 Cuadro azul con información sobre el DeLorean */
 .car-info {
   position: absolute;
   left: 10%;
   top: 20%;
-  background-color: rgba(126, 188, 255, 0.9); /* Azul semitransparente */
+  background-color: rgba(126, 188, 255, 0.9);
   color: white;
   padding: 15px;
   border-radius: 5px;
@@ -169,7 +164,7 @@ nav ul li a:hover {
 }
 
 .btn-container {
-  text-align: center; /* Centra el botón horizontalmente */
+  text-align: center;
 }
 
 .btn:hover {
@@ -177,17 +172,14 @@ nav ul li a:hover {
   color: white;
 }
 
-/* 🔹 Contenedor principal con Flexbox para distribuir upgrades y reviews */
 .features {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 20px; /* Se redujo el espacio */
-  padding: 10px; /* Ajustado para menor separación */
+  gap: 20px;
+  padding: 10px;
   flex-wrap: wrap;
 }
-
-/* 🔹 Títulos arriba y centrados */
 .upgrades-title, .reviews-title {
   width: 100%;
   text-align: center;
@@ -195,16 +187,14 @@ nav ul li a:hover {
   margin-bottom: 10px;
 }
 
-/* 🔹 Contenedor individual para cada sección */
 .upgrades-container, .reviews-container {
   flex: 1;
   text-align: center;
-  max-width: 45%; /* Limitar el ancho */
+  max-width: 45%;
 }
 
-/* 🔹 Títulos alineados sobre su contenido */
 .upgrades-container h2, .reviews-container h2 {
-  margin-bottom: 10px; /* Se redujo */
+  margin-bottom: 10px;
   text-align: center;
   font-size: 1.5em;
 }
@@ -213,14 +203,14 @@ nav ul li a:hover {
   font-size: 25px;
   text-align: justify;
   padding-top: 20px;
-  line-height: 1.8; /* Aumenta el espacio entre líneas */
+  line-height: 1.8; /* between lines */
 }
 
 .dmc-text li {
-  margin-bottom: 20px; /* Espacio extra entre cada bullet point */
+  margin-bottom: 20px;
 }
 
-/* 🔹 Contenedor de imágenes en Grid 2x2 */
+/* 🔹 Contenedor en Grid 2x2 */
 .upgrades {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -243,14 +233,13 @@ nav ul li a:hover {
   justify-content: center;
 }
 
-/* 🔹 Ajustes en las imágenes */
 .upgrade-item img {
   width: 100px;
   height: auto;
   margin-bottom: 5px;
 }
 
-/* 🔹 Nombre de los upgrades debajo de las imágenes */
+/*Names below*/
 .upgrade-item a {
   display: block;
   color: black;
@@ -263,16 +252,14 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* 🔹 Estilo de la lista de reviews */
 .reviews {
   flex: 1;
-  list-style-type: disc; /* Muestra bullets */
+  list-style-type: disc; /*ullets*/
   padding-left: 20px;
 }
 
-  /* 🔹 BACKGROUND IMAGE (CHECKERBOARD) */
 body {
-  background-color: lightgray; /* Esto hará que el fondo cambie si el CSS se aplica */
+  background-color: lightgray;
   font-family: Arial, sans-serif;
   background-image: url('/images/site/checkerboard.jpg');
   background-size: cover;
@@ -285,19 +272,17 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  /* 🔹 REMOVER el fondo checkerboard en móviles */
+  /* 🔹REMOVER el fondo checkerboard en celulares*/
   body {
-    background-image: none; /* Se elimina el fondo */
-    background-color: white; /* Fondo blanco para claridad */
+    background-image: none;
+    background-color: white;
   }
 
-  /* 🔹 Ajustar la caja principal */
   .main-container {
     width: 95%;
     padding: 10px;
   }
 
-  /* 🔹 Header y navegación centrada */
   #top-header {
     flex-direction: column;
     text-align: center;
@@ -309,7 +294,6 @@ h1 {
     gap: 5px;
   }
 
-  /* 🔹 Ajustar Hero Section */
   .car-container {
     flex-direction: column;
     align-items: center;
@@ -328,21 +312,19 @@ h1 {
     max-width: 500px;
   }
 
-  /* 🔹 Sección de Upgrades y Reviews */
   .features {
     flex-direction: column;
     align-items: center;
     gap: 20px;
   }
 
-  /* 🔹 Upgrades ahora en UNA sola columna */
+  /*UNA columna */
   .upgrades {
     grid-template-columns: 1fr;
     gap: 10px;
     width: 100%;
   }
 
-  /* 🔹 Ajustar Reviews */
   .reviews-container {
     width: 100%;
   }
