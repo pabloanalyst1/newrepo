@@ -33,28 +33,56 @@ Util.buildClassificationGrid = async function(data){
     grid = '<ul id="inv-display">'
     data.forEach(vehicle => { 
       grid += '<li>'
-      grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
-      + '" title="View ' + vehicle.inv_make + ' '+ vehicle.inv_model 
-      + 'details"><img src="' + vehicle.inv_thumbnail 
-      +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
-      +' on CSE Motors" /></a>'
+      grid +=  '<a href="/inv/detail/' + vehicle.inv_id 
+        + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model 
+        + ' details"><img src="/images/vehicles/' + vehicle.inv_thumbnail 
+        + '" alt="Image of ' + vehicle.inv_make + ' ' + vehicle.inv_model 
+        + ' on CSE Motors" /></a>'
       grid += '<div class="namePrice">'
       grid += '<hr />'
       grid += '<h2>'
-      grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
-      + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
+      grid += '<a href="/inv/detail/' + vehicle.inv_id 
+        + '" title="View ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
+        + vehicle.inv_make + ' ' + vehicle.inv_model + '</a>'
       grid += '</h2>'
-      grid += '<span>$' 
-      + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
+      grid += '<span>$' + new Intl.NumberFormat('en-US').format(vehicle.inv_price) + '</span>'
       grid += '</div>'
       grid += '</li>'
     })
     grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
   }
   return grid
 }
 
-module.exports = Util
+
+/* **************************************
+ * Build the vehicle detail view HTML
+ * ************************************ */
+Util.buildVehicleDetail = async function(vehicle) {
+  let detail = `
+    <section class="vehicle-detail">
+      <img src="/images/vehicles/${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+
+      <div class="vehicle-info">
+        <h2>${vehicle.inv_make} ${vehicle.inv_model} - $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</h2>
+        <ul>
+          <li><strong>Year:</strong> ${vehicle.inv_year}</li>
+          <li><strong>Price:</strong> $${new Intl.NumberFormat('en-US').format(vehicle.inv_price)}</li>
+          <li><strong>Mileage:</strong> ${new Intl.NumberFormat('en-US').format(vehicle.inv_miles)} miles</li>
+          <li><strong>Color:</strong> ${vehicle.inv_color}</li>
+        </ul>
+        <h3>Description:</h3>
+        <p>${vehicle.inv_description}</p>
+      </div>
+    </section>
+  `
+  return detail
+}
+
+module.exports = {
+  getNav: Util.getNav,
+  buildClassificationGrid: Util.buildClassificationGrid,
+  buildVehicleDetail: Util.buildVehicleDetail
+}

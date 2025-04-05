@@ -13,6 +13,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 const inventoryRoute = require("./routes/inventoryRoute")
+const utilities = require("./utilities/")
+
 
 
 
@@ -32,6 +34,10 @@ app.use(static)
 app.get("/", baseController.buildHome)
 // Inventory routes
 app.use("/inv", inventoryRoute)
+// Route to trigger a simulated error from footer
+app.get("/cause-error", (req, res, next) => {
+  throw new Error("This is a simulated error.")
+})
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
