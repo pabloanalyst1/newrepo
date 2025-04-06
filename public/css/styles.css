@@ -396,3 +396,17 @@ h1 {
     text-align: left;
   }
 }
+
+.note {
+  font-style: italic;
+  color: #666;
+  font-size: 0.9em;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.password-section {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
