@@ -4,13 +4,12 @@ const utilities = require("../utilities/")
 const invCont = {}
 
 /* ***************************
- *  Build inventory by classification view
+ *  Building inventory by classification view
  * ************************** */
 invCont.buildByClassificationId = async function (req, res, next) {
   const classification_id = req.params.classificationId
   const data = await invModel.getInventoryByClassificationId(classification_id)
 
-  // Verificar si hay resultados
   if (!data || data.length === 0) {
     let nav = await utilities.getNav()
     return res.status(404).render("errors/error", {
@@ -36,7 +35,7 @@ invCont.buildByClassificationId = async function (req, res, next) {
  * ************************** */
 invCont.buildByInventoryId = async function (req, res, next) {
   const invId = req.params.invId
-  const data = await invModel.getInventoryById(invId)
+  const data = await invModel.getVehicleById(invId)
 
   if (!data) {
     let nav = await utilities.getNav()
@@ -49,7 +48,7 @@ invCont.buildByInventoryId = async function (req, res, next) {
 
   const detail = await utilities.buildVehicleDetail(data)
   const nav = await utilities.getNav()
-  const name = `${data.inv_make} ${data.inv_model}`
+  const name = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
 
   res.render("inventory/detail", {
     title: name,
