@@ -1,0 +1,28 @@
+<h1>Vehicle Management</h1>
+
+<%- messages %>
+
+<section>
+  <h2>Inventory Management</h2>
+  <p>Use the links below to add a new classification or a new vehicle.</p>
+
+  <ul>
+    <li><a href="/inv/add-classification">Add New Classification</a></li>
+    <li><a href="/inv/add-inventory">Add New Vehicle</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Choose a Classification to View Vehicles</h2>
+  <form id="classificationForm">
+    <label for="classification_id">Classification:</label>
+      <%- classificationList %>
+    <button type="submit">Submit</button>
+  </form>
+</section>
+
+<section id="inventoryDisplay">
+  <!-- The inventory table will be injected here via JavaScript -->
+</section>
+
+<script src="/js/inventory.js"></script>
