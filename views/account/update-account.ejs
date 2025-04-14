@@ -1,0 +1,71 @@
+<h1>Update Account</h1>
+
+<% if (messages && messages.length > 0) { %>
+  <ul class="flash-messages">
+    <% messages.forEach(msg => { %>
+      <li><%= msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<% if (errors && errors.length > 0) { %>
+  <div class="error-messages">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>
+
+<!-- actualizar info -->
+<form action="/account/update" method="post">
+  <input type="hidden" name="account_id" value="<%= session.accountId %>">
+
+  <label for="account_firstname">First Name</label>
+  <input
+    type="text"
+    id="account_firstname"
+    name="account_firstname"
+    required
+    value="<%= accountData.account_firstname %>"
+  >
+
+  <label for="account_lastname">Last Name</label>
+  <input
+    type="text"
+    id="account_lastname"
+    name="account_lastname"
+    required
+    value="<%= accountData.account_lastname %>"
+  >
+
+  <label for="account_email">Email</label>
+  <input
+    type="email"
+    id="account_email"
+    name="account_email"
+    required
+    value="<%= accountData.account_email %>"
+  >
+
+  <button type="submit">Update Info</button>
+</form>
+
+<hr>
+
+<!-- actualizar la contra -->
+<h2>Change Password</h2>
+<form action="/account/update-password" method="post">
+  <input type="hidden" name="account_id" value="<%= session.accountId %>">
+
+  <label for="account_password">New Password</label>
+  <input
+    type="password"
+    id="account_password"
+    name="account_password"
+    required
+  >
+
+  <button type="submit">Change Password</button>
+</form>

@@ -35,10 +35,9 @@ Util.getNav = async function () {
   }
 }
 
-
 /* **************************************
  * Build the classification view HTML
- * ************************************ */
+ *************************************** */
 Util.buildClassificationGrid = async function (data) {
   let grid
   if (data.length > 0) {
@@ -69,7 +68,7 @@ Util.buildClassificationGrid = async function (data) {
 
 /* **************************************
  * Build the vehicle detail view HTML
- * ************************************ */
+ *************************************** */
 Util.buildVehicleDetail = async function (vehicle) {
   let detail = `
     <section class="vehicle-detail">
@@ -91,8 +90,8 @@ Util.buildVehicleDetail = async function (vehicle) {
 
 /* ******************************************
  * Build the classification select list
- * ****************************************** */
-Util.buildClassificationList = async function(selectedId = null) {
+ ******************************************* */
+Util.buildClassificationList = async function (selectedId = null) {
   let data = await invModel.getClassifications()
   let list = '<select name="classification_id" id="classification_id" required>'
   list += '<option value="">Choose a Classification</option>'
@@ -107,9 +106,22 @@ Util.buildClassificationList = async function(selectedId = null) {
   return list
 }
 
+/* ******************************************
+ * Middleware to check if user is logged in
+ ******************************************* */
+Util.checkLogin = (req, res, next) => {
+  if (req.session.accountId) {
+    return next()
+  } else {
+    req.flash("notice", "Please log in.")
+    res.redirect("/account/login")
+  }
+}
+
 module.exports = {
   getNav: Util.getNav,
   buildClassificationGrid: Util.buildClassificationGrid,
   buildVehicleDetail: Util.buildVehicleDetail,
-  buildClassificationList: Util.buildClassificationList
+  buildClassificationList: Util.buildClassificationList,
+  checkLogin: Util.checkLogin
 }

@@ -1,13 +1,14 @@
 const utilities = require("../utilities/")
-const baseController = {}
 
-baseController.buildHome = async function (req, res, next) {
-  try {
-    const nav = await utilities.getNav()
-    res.render("index", { title: "Home", nav })
-  } catch (error) {
-    next(error)
-  }
+async function buildHome(req, res) {
+  const nav = await utilities.getNav()
+  const message = req.flash("notice") // Captura una sola vez el flash
+  res.render("index", {
+    title: "Home",
+    nav,
+    message,
+    session: req.session // Para el nombre en el header
+  })
 }
 
-module.exports = baseController
+module.exports = { buildHome }

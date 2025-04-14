@@ -1,8 +1,15 @@
 <header id="top-header">
     <span class="siteName">
-        <a href="/" title="Return to home page">CSE Motors</a>
+      <a href="/" title="Return to home page">CSE Motors</a>
     </span>
     <div id="tools">
-        <a title="Click to log in" href="/account/login">My account</a>
+        <% if (typeof session !== "undefined" && session.loggedin) { %>
+            Welcome, <%= session.accountFirstName %> |
+            <a href="/account/dashboard" title="Go to your account">My Account</a> |
+            <a href="/account/logout" title="Log out">Logout</a>
+        <% } else { %>
+            <a href="/account/login" title="Click to log in">My account</a>
+        <% } %>          
     </div>
-</header>
+  </header>
+  

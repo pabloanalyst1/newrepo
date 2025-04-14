@@ -1,44 +1,34 @@
 /* ******************************************
- * This server.js file is the primary file of the 
- * application. It is used to control the project.
+ * server.js – Controla el ciclo completo del servidor
  *******************************************/
 /* ***********************
  * Require Statements
  *************************/
-const baseController = require("./controllers/baseController")
+const express = require("express")
+const app = express()
 const expressLayouts = require("express-ejs-layouts")
 const session = require("express-session")
 const pool = require('./database/')
-const express = require("express")
 const env = require("dotenv").config()
-const app = express()
-const static = require("./routes/static")
+
+const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const static = require("./routes/static")
 const utilities = require("./utilities/")
-
 
 /* ***********************
  * View Engine and Templates
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // not at views root
-app.use(express.urlencoded({ extended: true })) // Permite leer datos de formularios
-app.use(express.static("public"))
-
-
+app.set("layout", "./layouts/layout") // Not at views root
+app.use(express.urlencoded({ extended: true })) // To handle form data
+app.use(express.static("public")) // Serve static files
 
 /* ***********************
- * Middleware
- * ************************/
-// Express Messages Middleware
-app.use(require('connect-flash')())
-app.use(function(req, res, next){
-  res.locals.messages = require('express-messages')(req, res)
-  next()
-})
-
+ * Session & Flash Middleware (en orden correcto)
+ *************************/
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
     createTableIfMissing: true,
@@ -50,29 +40,42 @@ app.use(session({
   name: 'sessionId',
 }))
 
+// To have session data available to all views
+app.use((req, res, next) => {
+  res.locals.session = req.session
+  next()
+})
+
+const flash = require("connect-flash")
+const messages = require("express-messages")
+
+app.use(flash())
+app.use(function(req, res, next){
+  res.locals.messages = messages(req, res)
+  next()
+})
+
 /* ***********************
  * Routes
  *************************/
 app.use(static)
-// Index Route
 app.get("/", baseController.buildHome)
-// Inventory routes
 app.use("/inv", inventoryRoute)
-// Account routes
 app.use("/account", accountRoute)
-// Route to trigger a simulated error from footer
+
+// Simulated error route
 app.get("/cause-error", (req, res, next) => {
   throw new Error("This is a simulated error.")
 })
-// File Not Found Route - must be last route in list
+
+// 404 handler – must be last
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
 
 /* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
+ * Global Error Handler
+ *************************/
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
@@ -84,15 +87,11 @@ app.use(async (err, req, res, next) => {
 })
 
 /* ***********************
- * Local Server Information
- * Values from .env (environment) file
+ * Server Start
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
 
-/* ***********************
- * Log statement to confirm server operation
- *************************/
 app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}`)
+  console.log(`✅ app listening on ${host}:${port}`) //Así lo miro más bonito //
 })

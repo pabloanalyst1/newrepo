@@ -1,0 +1,18 @@
+<h1>Welcome, <%= accountData.account_firstname %>!</h1>
+
+<% if (messages && messages.length > 0) { %>
+  <ul class="flash-messages">
+    <% messages.forEach(msg => { %>
+      <li><%= msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section>
+  <h2>Account Details</h2>
+  <ul>
+    <li><strong>Name:</strong> <%= accountData.account_firstname %> <%= accountData.account_lastname %></li>
+    <li><strong>Email:</strong> <%= accountData.account_email %></li>
+    <li><strong>Account Type:</strong> <%= accountData.account_type %></li>
+  </ul>
+</section>

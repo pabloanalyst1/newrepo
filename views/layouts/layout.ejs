@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('../partials/head') %>
+    <%- include('../partials/head') %>     
 </head>
 <body>
     <div class="main-container">
@@ -18,7 +18,11 @@
     </div>
 
     <% if (title === "Inventory Management") { %>
-      <script src="/js/inventory.js"></script>
-    <% } %>
+        <script src="/js/inventory.js"></script>
+      <% } %>
+      
+      <% if (title === "Register") { %>
+        <script src="/js/formValidation.js"></script>
+      <% } %>      
 </body>
 </html>
