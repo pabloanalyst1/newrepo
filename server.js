@@ -14,7 +14,7 @@ const env = require("dotenv").config()
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
-const messageRoute = require("./routes/messageRoute") // ✅ NUEVO
+const messageRoute = require("./routes/messageRoute") 
 const static = require("./routes/static")
 const utilities = require("./utilities/")
 
