@@ -3,6 +3,8 @@ const router = new express.Router()
 const messageController = require("../controllers/messageController")
 const auth = require("../utilities/auth-middleware")
 const validate = require("../utilities/message-validation")
+const utilities = require("../utilities")
+
 
 // Inbox view
 router.get("/", auth.checkLogin, messageController.buildInbox)
@@ -24,5 +26,10 @@ router.get("/detail/:messageId", auth.checkLogin, messageController.buildMessage
 
 // Delete message
 router.post("/delete/:messageId", auth.checkLogin, messageController.deleteMessage)
+
+router.get("/testview", async (req, res) => {
+  const nav = await utilities.getNav() // html del menú dinámico
+  res.render("test", { title: "Test View", nav }) //ahora sí pasa nav
+})
 
 module.exports = router

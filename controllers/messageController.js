@@ -40,24 +40,22 @@ async function buildMessageDetail(req, res) {
 
 /* Show form to write a new message */
 async function buildComposeForm(req, res) {
-  console.log("🟢 Entramos a buildComposeForm")
   const nav = await utilities.getNav()
-  const accountId = req.session.accountId
-  const recipients = await messageModel.getAllAccountsExcept(accountId)
-
-  console.log("📬 Compose form - recipients list:", recipients)
 
   res.render("message/compose", {
     title: "New Message",
     nav,
-    recipients,
+    recipients: [
+      { account_id: 1, account_firstname: "Pablo", account_lastname: "Test" },
+      { account_id: 2, account_firstname: "Chiquillo", account_lastname: "Demo" }
+    ],
     errors: [],
-    messages: req.flash("notice"),
+    messages: [],
     subject: "",
     body: ""
   })
-  
 }
+
 
 
 /* Handle send message POST */
