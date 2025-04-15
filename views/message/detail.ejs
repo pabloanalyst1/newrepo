@@ -1,0 +1,24 @@
+<h1>Message Detail</h1>
+
+<% if (message) { %>
+  <p><strong>From:</strong> <%= message.sender_name %></p>
+  <p><strong>Subject:</strong> <%= message.message_subject %></p>
+  <p><strong>Received:</strong> <%= new Date(message.message_created).toLocaleString() %></p>
+
+  <hr>
+
+  <p><%= message.message_body %></p>
+
+  <hr>
+
+  <a href="/messages/compose?to=<%= message.message_from %>&subject=Re: <%= message.message_subject %>">Reply</a>
+
+  <form method="post" action="/messages/delete/<%= message.message_id %>" onsubmit="return confirm('Are you sure you want to delete this message?')">
+    <button type="submit">Delete</button>
+  </form>
+
+<% } else { %>
+  <p>Message not found.</p>
+<% } %>
+
+<a href="/messages">Back to Inbox</a>

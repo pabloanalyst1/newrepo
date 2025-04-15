@@ -1,0 +1,35 @@
+<h1>Inbox</h1>
+
+<% if (messagesExist) { %>
+  <p>You have <%= messagesCount %> message<%= messagesCount > 1 ? 's' : '' %>.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>Subject</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% messages.forEach(message => { %>
+        <tr>
+          <td><%= message.sender_name %></td>
+          <td><a href="/messages/detail/<%= message.message_id %>"><%= message.message_subject %></a></td>
+          <td><%= message.message_created.toLocaleString() %></td>
+          <td><%= message.message_read ? "Read" : "Unread" %></td>
+          <td>
+            <form action="/messages/delete/<%= message.message_id %>" method="post" onsubmit="return confirm('Are you sure?')">
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } else { %>
+  <p>No messages yet.</p>
+<% } %>
+
+<a href="/messages/compose">Compose New Message</a>

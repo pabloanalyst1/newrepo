@@ -14,6 +14,7 @@ const env = require("dotenv").config()
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const accountRoute = require("./routes/accountRoute")
+const messageRoute = require("./routes/messageRoute") // ✅ NUEVO
 const static = require("./routes/static")
 const utilities = require("./utilities/")
 
@@ -22,12 +23,12 @@ const utilities = require("./utilities/")
  *************************/
 app.set("view engine", "ejs")
 app.use(expressLayouts)
-app.set("layout", "./layouts/layout") // Not at views root
-app.use(express.urlencoded({ extended: true })) // To handle form data
-app.use(express.static("public")) // Serve static files
+app.set("layout", "./layouts/layout")
+app.use(express.urlencoded({ extended: true }))
+app.use(express.static("public"))
 
 /* ***********************
- * Session & Flash Middleware (en orden correcto)
+ * Session & Flash Middleware
  *************************/
 app.use(session({
   store: new (require('connect-pg-simple')(session))({
@@ -40,7 +41,7 @@ app.use(session({
   name: 'sessionId',
 }))
 
-// To have session data available to all views
+// Hacer datos de sesión disponibles a todas las vistas
 app.use((req, res, next) => {
   res.locals.session = req.session
   next()
@@ -62,13 +63,14 @@ app.use(static)
 app.get("/", baseController.buildHome)
 app.use("/inv", inventoryRoute)
 app.use("/account", accountRoute)
+app.use("/messages", messageRoute) // ✅ NUEVO
 
 // Simulated error route
 app.get("/cause-error", (req, res, next) => {
   throw new Error("This is a simulated error.")
 })
 
-// 404 handler – must be last
+// 404 handler
 app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, we appear to have lost that page.'})
 })
@@ -93,5 +95,5 @@ const port = process.env.PORT
 const host = process.env.HOST
 
 app.listen(port, () => {
-  console.log(`✅ app listening on ${host}:${port}`) //Así lo miro más bonito //
+  console.log(`✅ app listening on ${host}:${port}`)
 })
